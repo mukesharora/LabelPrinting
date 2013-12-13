@@ -1,0 +1,46 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:tns="http://tempuri.org/" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="LabelPrintingService" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://tempuri.org/Imports">
+      <xsd:import namespace="http://tempuri.org/" />
+      <xsd:import namespace="http://schemas.datacontract.org/2004/07/LabelPrinting" />
+      <xsd:import namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="ILabelPrintingService_GenerateLabelPreview_InputMessage">
+    <wsdl:part name="parameters" element="tns:GenerateLabelPreview" />
+  </wsdl:message>
+  <wsdl:message name="ILabelPrintingService_GenerateLabelPreview_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GenerateLabelPreviewResponse" />
+  </wsdl:message>
+  <wsdl:message name="ILabelPrintingService_GenerateLabelPreview_CustomExceptionFault_FaultMessage">
+    <wsdl:part xmlns:q1="http://schemas.datacontract.org/2004/07/LabelPrinting" name="detail" element="q1:CustomException" />
+  </wsdl:message>
+  <wsdl:portType name="ILabelPrintingService">
+    <wsdl:operation name="GenerateLabelPreview">
+      <wsdl:input wsaw:Action="http://tempuri.org/ILabelPrintingService/GenerateLabelPreview" message="tns:ILabelPrintingService_GenerateLabelPreview_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ILabelPrintingService/GenerateLabelPreviewResponse" message="tns:ILabelPrintingService_GenerateLabelPreview_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://tempuri.org/ILabelPrintingService/GenerateLabelPreviewCustomExceptionFault" name="CustomExceptionFault" message="tns:ILabelPrintingService_GenerateLabelPreview_CustomExceptionFault_FaultMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="BasicHttpBinding_ILabelPrintingService" type="tns:ILabelPrintingService">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="GenerateLabelPreview">
+      <soap:operation soapAction="http://tempuri.org/ILabelPrintingService/GenerateLabelPreview" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="CustomExceptionFault">
+        <soap:fault use="literal" name="CustomExceptionFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="LabelPrintingService">
+    <wsdl:port name="BasicHttpBinding_ILabelPrintingService" binding="tns:BasicHttpBinding_ILabelPrintingService">
+      <soap:address location="http://localhost:8312/LabelPrinting/LabelPrintingService/" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>
