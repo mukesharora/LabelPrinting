@@ -16,6 +16,10 @@
     <WcfConfigValidationEnabled>True</WcfConfigValidationEnabled>
     <XsdCodeGenEnabled>True</XsdCodeGenEnabled>
     <TargetFrameworkProfile />
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -35,6 +39,11 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Interop.BarTenderPrintClient, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+      <HintPath>Lib\Interop.BarTenderPrintClient.dll</HintPath>
+    </Reference>
     <Reference Include="log4net">
       <HintPath>Lib\log4net.dll</HintPath>
     </Reference>
@@ -63,15 +72,11 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <COMReference Include="BarTenderPrintClient">
-      <Guid>{20033D6A-7B24-41E5-A4D9-1C626B07876B}</Guid>
-      <VersionMajor>1</VersionMajor>
-      <VersionMinor>0</VersionMinor>
-      <Lcid>0</Lcid>
-      <WrapperTool>tlbimp</WrapperTool>
-      <Isolated>False</Isolated>
-      <EmbedInteropTypes>True</EmbedInteropTypes>
-    </COMReference>
+    <Content Include="Lib\BarTenderPrintClient.dll" />
+    <Content Include="Lib\Interop.BarTenderPrintClient.dll" />
+    <Content Include="Lib\log4net.dll" />
+    <Content Include="Lib\Seagull.BarTender.Print.dll" />
+    <Content Include="Lib\Seagull.BarTender.Print.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ProjectExtensions>
