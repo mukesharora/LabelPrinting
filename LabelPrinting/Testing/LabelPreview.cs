@@ -28,7 +28,7 @@ namespace Testing
 
                 if (File.Exists(textBox1.Text.Trim()))
                 {
-                    LabelPrinting.LabelPrintingServiceClient client = new LabelPrinting.LabelPrintingServiceClient();
+                    LabelPrintingServiceClient client = new LabelPrintingServiceClient();
                     //Stream stream = File.OpenRead(textBox1.Text.Trim());
                     byte[] imgData = client.GenerateLabelPreview(File.ReadAllBytes(textBox1.Text.Trim()), txtPrinter.Text.Trim());
                     pictureBox1.Image = ByteArrayToImage(imgData);

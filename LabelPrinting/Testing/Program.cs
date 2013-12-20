@@ -15,7 +15,8 @@ namespace Testing
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new LabelPreview());
+            Application.Run(new frmServiceTestingClient());
+            
         }
     }
 }
