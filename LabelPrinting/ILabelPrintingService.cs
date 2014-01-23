@@ -5,7 +5,6 @@ using System.ServiceModel;
 
 namespace LabelPrinting
 {
-    //[ServiceContract(CallbackContract = typeof(ILabelPrintingServiceCallback))]
     [ServiceContract]
     public interface ILabelPrintingService
     {
@@ -40,22 +39,11 @@ namespace LabelPrinting
         [OperationContract]
         [FaultContract(typeof(CustomException))]
         PrintResult PrintBatchJob(string printJobName, string printerName,string printedBy, List<PrintJobParameters> lstPrintJobParameters);
-
-        [OperationContract]
-        [FaultContract(typeof(CustomException))]
-        bool IsPrinterAvailable(string printerName);
-
-        [OperationContract(IsOneWay = true)]
-        void PrintBatchJobCallback(string printJobName, string printerName, List<PrintJobParameters> lstPrintJobParameters);
+                       
     }
 
 
-    public interface ILabelPrintingServiceCallback
-    {
-        [OperationContract(IsOneWay = true)]
-        void CallbackFunction(PrintResult printResult);
-    }
-
+  
 
     [DataContract]
     public class CustomException

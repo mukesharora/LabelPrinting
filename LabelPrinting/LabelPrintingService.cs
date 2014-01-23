@@ -10,15 +10,10 @@ using System.Threading;
 
 namespace LabelPrinting
 {
-    //[ServiceBehavior(ConcurrencyMode = ConcurrencyMode.Reentrant, InstanceContextMode = InstanceContextMode.PerCall)]
+    
     public class LabelPrintingService : ILabelPrintingService
     {
-        //enum CallingSource
-        //{
-        //    Error,
-        //    Sent
-        //}
-
+    
         private const string ImagePrefix = "img";
 
         private static readonly ILog log = LogManager.GetLogger(typeof(LabelPrintingService));
@@ -219,17 +214,7 @@ namespace LabelPrinting
                 throw new FaultException<CustomException>(exceptionDetails, outerEx.Message);
             }
         }
-
-
-        public bool IsPrinterAvailable(string printerName)
-        {
-            throw new NotImplementedException("IsPrinterAvailable");
-        }
-
-        public void PrintBatchJobCallback(string printJobName, string printerName, List<PrintJobParameters> lstPrintJobParameters)
-        {
-            throw new NotImplementedException("PrintBatchJobCallback");
-        }
+             
 
         #region "Private Methods"
 
@@ -270,10 +255,6 @@ namespace LabelPrinting
                 string fileName = assetParam.AssetID + "," + assetTypeID + "," + printJobName;
                 LabelFormatDocument format = engine.Documents.Open(inputFile);
                 format.PrintSetup.PrinterName = printerName;
-
-                //format.JobCancelled += format_JobErrorOccurred;
-                //format.JobErrorOccurred += format_JobErrorOccurred;
-                // format.JobSent += format_JobSent;
 
                 PrintBatchJobRepository repository = new PrintBatchJobRepository();
 
@@ -320,50 +301,7 @@ namespace LabelPrinting
             }
         }
 
-        //void format_JobSent(object sender, JobSentEventArgs e)
-        //{
-        //    UpdateJobStatus(e, e.JobPrintingVerified, CallingSource.Sent);
-        //}
-
-        //void format_JobErrorOccurred(object sender, PrintJobEventArgs e)
-        //{
-        //    UpdateJobStatus(e, false, CallingSource.Error);
-        //}
-
-        //private void UpdateJobStatus(PrintJobEventArgs e, bool JobPrintingVerified, CallingSource source)
-        //{
-        //    string[] fileName = e.Name.Split(',');
-        //    int assetID = Convert.ToInt32(fileName[0]);
-        //    int assetTypeID = Convert.ToInt32(fileName[1]);
-        //    string printJobName = fileName[2];
-        //    PrintBatchJobRepository repository = new PrintBatchJobRepository();
-        //    bool isPrinted = JobPrintingVerified;
-        //    if (JobPrintingVerified)
-        //    {
-        //        repository.UpdatePrintJobDetailStatus(printJobName, assetTypeID, assetID, isPrinted, e.PrinterInfo.Message);
-        //    }
-        //    else
-        //    {
-        //        if (e.PrinterInfo.StatusSeverity == PrinterStatusSeverity.Normal && source == CallingSource.Sent)
-        //        {
-        //            isPrinted = true;
-        //        }
-        //        if (source == CallingSource.Error)
-        //        {
-        //            isPrinted = false;
-        //        }
-        //        if (e.PrinterInfo.StatusSeverity == PrinterStatusSeverity.Error)
-        //        {
-        //            isPrinted = false;
-        //        }
-        //        if (e.PrinterInfo.Message.ToLower().Contains("error") || e.PrinterInfo.Message.ToLower().Contains("user cancelled"))
-        //        {
-        //            isPrinted = false;
-        //        }
-        //        repository.UpdatePrintJobDetailStatus(printJobName, assetTypeID, assetID, isPrinted, e.PrinterInfo.Message);
-        //    }
-        //}
-
+       
         private bool IsSubStringExists(string subStringKey, SubStrings subStrings)
         {
             foreach (SubString subString in subStrings)
