@@ -120,9 +120,6 @@
   <data name="JobSubmitted" xml:space="preserve">
     <value>Print job has been successfully submitted.</value>
   </data>
-  <data name="LabelSpooled" xml:space="preserve">
-    <value>Label has been successfully spooled to the printer.</value>
-  </data>
   <data name="PrintFailed" xml:space="preserve">
     <value>Print Failed</value>
   </data>

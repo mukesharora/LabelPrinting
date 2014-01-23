@@ -70,15 +70,6 @@ namespace LabelPrinting {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Label has been successfully spooled to the printer..
-        /// </summary>
-        internal static string LabelSpooled {
-            get {
-                return ResourceManager.GetString("LabelSpooled", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Print Failed.
         /// </summary>
         internal static string PrintFailed {

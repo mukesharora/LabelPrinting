@@ -10,10 +10,11 @@ using System.Threading;
 
 namespace LabelPrinting
 {
-    
+   
     public class LabelPrintingService : ILabelPrintingService
     {
-    
+       
+
         private const string ImagePrefix = "img";
 
         private static readonly ILog log = LogManager.GetLogger(typeof(LabelPrintingService));
@@ -197,7 +198,7 @@ namespace LabelPrinting
                 lstThreadParam.Add(lstPrintJobParameters);
                 ParameterizedThreadStart threadStart = new ParameterizedThreadStart(StartPrintBatchJob);
                 new Thread(threadStart).Start(lstThreadParam);
-                //StartPrintBatchJob(printJobID, printerName, lstPrintJobParameters);
+               
 
 
                 repository.UpdatePrintJobStatus(printedBy,printJobName, "Printed");
@@ -214,7 +215,7 @@ namespace LabelPrinting
                 throw new FaultException<CustomException>(exceptionDetails, outerEx.Message);
             }
         }
-             
+
 
         #region "Private Methods"
 
@@ -255,6 +256,8 @@ namespace LabelPrinting
                 string fileName = assetParam.AssetID + "," + assetTypeID + "," + printJobName;
                 LabelFormatDocument format = engine.Documents.Open(inputFile);
                 format.PrintSetup.PrinterName = printerName;
+
+             
 
                 PrintBatchJobRepository repository = new PrintBatchJobRepository();
 
@@ -301,7 +304,7 @@ namespace LabelPrinting
             }
         }
 
-       
+      
         private bool IsSubStringExists(string subStringKey, SubStrings subStrings)
         {
             foreach (SubString subString in subStrings)
@@ -410,8 +413,8 @@ namespace LabelPrinting
                 }
                 else
                 {
-                    printResult.Success = true;
-                    printResult.Message = ServiceMessages.LabelSpooled + messageString;
+                    printResult.Success = true;                    
+                    printResult.Message = ServiceMessages.PrintSpooled;
                 }
                 try
                 {
