@@ -120,6 +120,9 @@
   <data name="JobSubmitted" xml:space="preserve">
     <value>Print job has been successfully submitted.</value>
   </data>
+  <data name="PrintetNotFound" xml:space="preserve">
+    <value>Printer '{0}' not found.</value>
+  </data>
   <data name="PrintFailed" xml:space="preserve">
     <value>Print Failed</value>
   </data>

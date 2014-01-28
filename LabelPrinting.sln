@@ -12,8 +12,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HostingApp", "HostingApp\Ho
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LabelPrintingService", "LabelPrintingServiceInstaller\LabelPrintingService.csproj", "{210F7DE5-D838-4F54-94A7-0AF8FB5B3CD6}"
 EndProject
-Global
-	
+Global	
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Debug|Mixed Platforms = Debug|Mixed Platforms

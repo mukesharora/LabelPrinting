@@ -10,10 +10,10 @@ using System.Threading;
 
 namespace LabelPrinting
 {
-   
+
     public class LabelPrintingService : ILabelPrintingService
     {
-       
+
 
         private const string ImagePrefix = "img";
 
@@ -178,17 +178,17 @@ namespace LabelPrinting
             }
         }
 
-        public PrintResult PrintBatchJob( string printJobName, string printerName,string printedBy, List<PrintJobParameters> lstPrintJobParameters)
+        public PrintResult PrintBatchJob(string printJobName, string printerName, string printedBy, List<PrintJobParameters> lstPrintJobParameters)
         {
             try
             {
                 PrintResult printResult = new PrintResult();
-                //if (!IsPrinterInstalled(printerName))
-                //{
-                //    printResult.Success = false;
-                //    printResult.Message = "Selected printer is not installed.";
-                //    return printResult;
-                //}
+                if (!IsPrinterInstalled(printerName))
+                {
+                    printResult.Success = false;
+                    printResult.Message = string.Format(ServiceMessages.PrintetNotFound, printerName);
+                    return printResult;
+                }
                 PrintBatchJobRepository repository = new PrintBatchJobRepository();
                 repository.UpdatePrintJobStatus(printedBy, printJobName, "Printing");
 
@@ -198,10 +198,10 @@ namespace LabelPrinting
                 lstThreadParam.Add(lstPrintJobParameters);
                 ParameterizedThreadStart threadStart = new ParameterizedThreadStart(StartPrintBatchJob);
                 new Thread(threadStart).Start(lstThreadParam);
-               
 
 
-                repository.UpdatePrintJobStatus(printedBy,printJobName, "Printed");
+
+                repository.UpdatePrintJobStatus(printedBy, printJobName, "Printed");
                 printResult.Message = ServiceMessages.JobSubmitted;
                 printResult.Success = true;
                 return printResult;
@@ -257,7 +257,7 @@ namespace LabelPrinting
                 LabelFormatDocument format = engine.Documents.Open(inputFile);
                 format.PrintSetup.PrinterName = printerName;
 
-             
+
 
                 PrintBatchJobRepository repository = new PrintBatchJobRepository();
 
@@ -304,7 +304,7 @@ namespace LabelPrinting
             }
         }
 
-      
+
         private bool IsSubStringExists(string subStringKey, SubStrings subStrings)
         {
             foreach (SubString subString in subStrings)
@@ -413,7 +413,7 @@ namespace LabelPrinting
                 }
                 else
                 {
-                    printResult.Success = true;                    
+                    printResult.Success = true;
                     printResult.Message = ServiceMessages.PrintSpooled;
                 }
                 try

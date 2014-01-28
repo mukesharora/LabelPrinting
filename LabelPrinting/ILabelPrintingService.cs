@@ -5,6 +5,7 @@ using System.ServiceModel;
 
 namespace LabelPrinting
 {
+    
     [ServiceContract]
     public interface ILabelPrintingService
     {
@@ -39,12 +40,10 @@ namespace LabelPrinting
         [OperationContract]
         [FaultContract(typeof(CustomException))]
         PrintResult PrintBatchJob(string printJobName, string printerName,string printedBy, List<PrintJobParameters> lstPrintJobParameters);
-                       
+              
     }
 
-
-  
-
+      
     [DataContract]
     public class CustomException
     {
